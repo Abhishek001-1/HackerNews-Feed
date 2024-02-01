@@ -23,7 +23,14 @@ const app = express();
 
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors(
+    {
+        origin:["https://hacker-news-feed-frontend.vercel.app"],
+        methods:["POST","GET"],
+        credentials:true
+    }
+));
 
 app.use("/users", require("./routes/userRoute"));
 const PORT = 8080 || process.env.PORT;
